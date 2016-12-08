@@ -50,6 +50,25 @@
       <i-col :span="4"><div class="gutter-box">col-4</div></i-col>
       <i-col :span="4"><div class="col-box">col-4</div></i-col>
     </row>
+    <h2>Flex 排序</h2>
+    <row type="flex">
+      <i-col :span="6" :order="4"><div class="gutter-box">1st col-order-4</div></i-col>
+      <i-col :span="6" :order="3"><div class="col-box">2nd col-order-3</div></i-col>
+      <i-col :span="6" :order="2"><div class="gutter-box">3rd col-order-2</div></i-col>
+      <i-col :span="6" :order="1"><div class="col-box">4th col-order-1</div></i-col>
+    </row>
+    <h2>响应式布局</h2>
+    <row type="flex">
+      <i-col :xs="2" :sm="4" :md="6" :lg="8"><div class="gutter-box"> Col </div></i-col>
+      <i-col :xs="20" :sm="16" :md="12" :lg="8"><div class="col-box"> Col </div></i-col>
+      <i-col :xs="2" :sm="4" :md="6" :lg="8"><div class="gutter-box"> Col </div></i-col>
+    </row>
+    <h2>其他属性的响应式</h2>
+    <row type="flex">
+      <i-col :xs="{span: 5, offset: 1}" :lg="{span: 6, offset: 2}"><div class="gutter-box"> Col </div></i-col>
+      <i-col :xs="{span: 11, offset: 1}" :lg="{span: 6, offset: 2}"><div class="col-box"> Col </div></i-col>
+      <i-col :xs="{span: 5, offset: 1}" :lg="{span: 6, offset: 2}"><div class="gutter-box"> Col </div></i-col>
+    </row>
   </div>
 </template>
 
