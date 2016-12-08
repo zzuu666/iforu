@@ -44,6 +44,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" scoped>
 @import "index";
+@import "../ui/iconfont";
 .show-box {
   margin: 10px auto;
 }

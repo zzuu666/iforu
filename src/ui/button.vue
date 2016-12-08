@@ -5,17 +5,21 @@
     :class="[
       `i-button-${this.type}`,
       size ? `i-button-${this.size}` : '',
+      shape === 'circle' ? 'i-button-circle' : '',
       {
         'i-button-clicked': isClicked
       }
     ]"
+    :type="htmlType"
     @click="handleClick"
-    :type="htmlType">
+    @mouseup="handleMouseUp">
     <slot></slot>
   </button>
 </template>
 
 <script>
+import Icon from './icon'
+
 export default {
   name: 'iButton',
   data () {
@@ -23,6 +27,9 @@ export default {
       isClicked: false,
       timeout: null
     }
+  },
+  components: {
+    Icon
   },
   props: {
     type: {
@@ -38,6 +45,7 @@ export default {
       type: String,
       default: 'button'
     },
+    shape: String,
     loading: Boolean,
     disabled: Boolean,
     plain: Boolean,
@@ -55,6 +63,10 @@ export default {
       }, 500)
 
       this.$emit('click', e)
+    },
+    // Handle auto focus when click button in Chrome
+    handleMouseUp (e) {
+      e.currentTarget.blur()
     }
   }
 }
@@ -62,6 +74,7 @@ export default {
 
 <style lang="less" scoped>
 @import "index";
+
 .i-button {
   .btn;
 
