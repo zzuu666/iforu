@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1>Grid</h1>
     <h2>区块间隔</h2>
     <row :gutter="16">
       <i-col :span="6"><div class="gutter-box">col-6</div></i-col>
@@ -77,12 +77,7 @@ import Row from '../ui/row'
 import iCol from '../ui/col'
 
 export default {
-  name: 'hello',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
-  },
+  name: 'GridGuide',
   components: {
     Row,
     iCol

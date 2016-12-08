@@ -1,10 +1,11 @@
 <template>
   <div
     class="i-row"
-    :style="style" :class="[
+    :style="style"
+    :class="[
       justify !== 'start' ? 'i-justify-' + justify : '',
       align !== 'top' ? 'i-align-' + align : '',
-      type === 'flex' ? 'i-row-flex' : 'i-row-clearfix' 
+      type === 'flex' ? 'i-row-flex' : 'i-row-clearfix'
     ]">
     <slot></slot>
   </div>

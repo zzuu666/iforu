@@ -2,16 +2,19 @@
   <div id="app">
     <img src="./assets/logo.png">
     <hello></hello>
+    <g-button></g-button>
   </div>
 </template>
 
 <script>
 import Hello from './components/Hello'
+import gButton from './components/Button'
 
 export default {
   name: 'app',
   components: {
-    Hello
+    Hello,
+    gButton
   }
 }
 </script>

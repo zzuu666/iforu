@@ -13,7 +13,7 @@ export default {
   props: {
     span: {
       type: Number,
-      required: true
+      default: 24
     },
     offset: Number,
     order: Number,
@@ -90,7 +90,7 @@ export default {
 // generate normal class
 .generate-classes(@columns);
 // generate col, offset, order, pull, push function
-.generate-classes(@n, @size: ~'',@i: 1) when (@i <= @n) {
+.generate-classes (@n, @size: ~'',@i: 1) when (@i <= @n) {
   .i-col@{size}-@{i} {
     width: (@i * 100% / @n);
   }
