@@ -13,7 +13,8 @@
     :type="htmlType"
     @click="handleClick"
     @mouseup="handleMouseUp">
-    <slot></slot>
+    <icon :type="icon" v-if="icon"></icon>
+    <slot v-if="shape !== 'circle'"></slot>
   </button>
 </template>
 
@@ -89,6 +90,10 @@ export default {
   }
   &-dashed {
     .btn-dashed
+  }
+  &-circle,
+  &-circle-outline {
+    .btn-circle(i-button);
   }
 }
 
@@ -249,5 +254,19 @@ export default {
 .btn-dashed () {
   .button-variant-other(@btn-ghost-color, @btn-ghost-bg, @btn-ghost-border);
   border-style: dashed;
+}
+.btn-circle (@btnClassName: btn) {
+  .square(@btn-circle-size);
+  .button-size(0; @font-size-base + 2; 50%);
+
+  &.@{btnClassName}-lg {
+    .square(@btn-circle-size-lg);
+    .button-size(0; @btn-font-size-lg + 2; 50%);
+  }
+
+  &.@{btnClassName}-sm {
+    .square(@btn-circle-size-sm);
+    .button-size(0; @font-size-base; 50%);
+  }
 }
 </style>
