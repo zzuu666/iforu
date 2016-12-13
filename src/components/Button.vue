@@ -81,7 +81,21 @@
         <i-button :disabled="true">M</i-button>
         <i-button :disabled="true">R</i-button>
       </i-button-group>
+    </div>
+    <div>
+      <i-button-group size="sm">
+        <i-button type="primary">L</i-button>
+        <i-button>M</i-button>
+        <i-button type="ghost">M</i-button>
+        <i-button type="dashed">R</i-button>
+      </i-button-group>
       <i-button-group>
+        <i-button type="primary">L</i-button>
+        <i-button>M</i-button>
+        <i-button type="ghost">M</i-button>
+        <i-button type="dashed">R</i-button>
+      </i-button-group>
+      <i-button-group size="lg">
         <i-button type="primary">L</i-button>
         <i-button>M</i-button>
         <i-button type="ghost">M</i-button>
@@ -106,7 +120,8 @@
 <script>
 import Icon from '../ui/icon'
 import iButton from '../ui/button'
-import iButtonGroup from '../ui/button-group'
+
+const iButtonGroup = iButton.Group
 
 export default {
   name: 'GridGuide',
@@ -135,7 +150,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" scoped>
 @import "index";
-@import "../ui/iconfont";
 .show-box {
   margin: 10px auto;
 }

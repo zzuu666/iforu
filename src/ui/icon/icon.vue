@@ -19,5 +19,5 @@
   }
 </script>
 <style lang="less" scoped>
-@import "iconfont";
+@import "./style/index";
 </style>
