@@ -4,7 +4,7 @@
     :class="[
       `anticon-${type}`,
       {
-        'anticon-spin': spin
+        'anticon-spin': spin || type === 'loading'
       }
     ]"></i>
 </template>

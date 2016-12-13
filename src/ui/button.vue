@@ -7,14 +7,17 @@
       size ? `i-button-${this.size}` : '',
       shape === 'circle' ? 'i-button-circle' : '',
       {
-        'i-button-clicked': isClicked
+        'i-button-clicked': isClicked,
+        'i-button-loading': loading
       }
     ]"
     :type="htmlType"
     @click="handleClick"
     @mouseup="handleMouseUp">
-    <icon :type="icon" v-if="icon"></icon>
-    <slot v-if="shape !== 'circle'"></slot>
+    <icon :type="loading ? 'loading' : icon" v-if="icon || loading"></icon>
+    <span v-if="$slots.default && shape !== 'circle'">
+      <slot></slot>
+    </span>
   </button>
 </template>
 
@@ -73,7 +76,7 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 @import "index";
 
 .i-button {
@@ -94,6 +97,36 @@ export default {
   &-circle,
   &-circle-outline {
     .btn-circle(i-button);
+  }
+  &&-loading {
+    padding-left: 29px;
+    pointer-events: none;
+    position: relative;
+    .@{iconfont-css-prefix} {
+      margin-left: -14px;
+      transition: all .3s @ease-in-out;
+    }
+    &:before {
+      display: block;
+    }
+  }
+  &-sm&-loading {
+    padding-left: 24px;
+    .@{iconfont-css-prefix} {
+      margin-left: -17px;
+    }
+  }
+  &-group {
+    .btn-group(i-button);
+  }
+  &:not(&-circle):not(&-circle-outline)&-icon-only {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  > .@{iconfont-css-prefix} + span,
+  > span + .@{iconfont-css-prefix} {
+    margin-left: 0.5em;
   }
 }
 
@@ -165,6 +198,21 @@ export default {
     opacity: 0.4;
     animation: buttonEffect 0.36s ease-out forwards;
     display: block;
+  }
+  &:before {
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    bottom: -1px;
+    right: -1px;
+    background: #fff;
+    opacity: 0.35;
+    content: '';
+    border-radius: inherit;
+    z-index: 1;
+    transition: opacity .2s;
+    pointer-events: none;
+    display: none;
   }
 }
 .button-size (@padding; @font-size; @border-radius) {
@@ -267,6 +315,88 @@ export default {
   &.@{btnClassName}-sm {
     .square(@btn-circle-size-sm);
     .button-size(0; @font-size-base; 50%);
+  }
+}
+// button group base
+.button-group-base(@btnClassName) {
+  position: relative;
+  display: inline-block;
+  > .@{btnClassName} {
+    position: relative;
+    float: left;
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      z-index: 2;
+    }
+  }
+
+  // size
+  &-lg > .@{btnClassName} {
+    .button-size(@btn-padding-lg; @btn-font-size-lg; @btn-border-radius-base);
+  }
+
+  &-sm > .@{btnClassName} {
+    .button-size(@btn-padding-sm; @font-size-base; @btn-border-radius-sm);
+    > .@{iconfont-css-prefix} {
+      font-size: @font-size-base;
+    }
+  }
+}
+// Horizontal button groups styl
+// --------------------------------------------------
+.btn-group(@btnClassName: btn) {
+  .button-group-base(@btnClassName);
+
+  .@{btnClassName} + .@{btnClassName},
+  .@{btnClassName} + &,
+  & + .@{btnClassName},
+  & + & {
+    margin-left: -1px;
+  }
+
+  .@{btnClassName}:not(:first-child):not(:last-child) {
+    border-radius: 0;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  > .@{btnClassName}:first-child {
+    margin-left: 0;
+    &:not(:last-child) {
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+      padding-right: 8px;
+    }
+  }
+
+  > .@{btnClassName}:last-child:not(:first-child) {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    padding-left: 8px;
+  }
+
+  & > & {
+    float: left;
+  }
+
+  & > &:not(:first-child):not(:last-child) > .@{btnClassName} {
+    border-radius: 0;
+  }
+
+  & > &:first-child:not(:last-child) {
+    > .@{btnClassName}:last-child {
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+      padding-right: 8px;
+    }
+  }
+
+  & > &:last-child:not(:first-child) > .@{btnClassName}:first-child {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    padding-left: 8px;
   }
 }
 </style>
