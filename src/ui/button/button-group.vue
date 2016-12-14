@@ -2,7 +2,7 @@
   <div
     class="i-button-group"
     :class="[
-      `i-button-group-${size}`
+      size ? `i-button-group-${size}` : ''
     ]">
     <slot></slot>
   </div>

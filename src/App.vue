@@ -1,31 +1,72 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <hello></hello>
-    <g-button></g-button>
+    <header>
+      <img src="./assets/logo.png" class="logo">
+      <span class="title">ANT DESIGN x SAWYER x Vue 2.0</span>
+    </header>
+    <row class="content">
+      <i-col :span="4">
+        <div>
+          <router-link to="/grid">Grid 栅栏</router-link>
+          <router-link to="/button">Button 按钮</router-link>
+        </div>
+      </i-col>
+      <i-col :span="20">
+        <transition name="fade" mode="out-in">
+          <router-view></router-view>
+        </transition>
+      </i-col>
+    </row>
   </div>
 </template>
 
 <script>
-import Hello from './components/Hello'
-import gButton from './components/Button'
+import Row from './ui/row'
+import iCol from './ui/col'
 
 export default {
   name: 'app',
   components: {
-    Hello,
-    gButton
+    Row,
+    iCol
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="less">
+@import "./ui/style/index";
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: #fff;
+  z-index: 10;
+  font-size: 14px;
+  border-bottom: 1px solid #dfdfdf;
+  .logo {
+    position: relative;
+    display: inline-block;
+    top: 20px;
+    height: 40px;
+    margin-left: 40px;
+    margin-right: 20px;
+  }
+  .title {
+    position: relative;
+    top: 6px;
+    color: @primary-color;
+  }
+}
+.content {
+  position: relative;
+  top: 90px;
+  width: 90%;
+  margin: 0 5%;
+  a {
+    display: block;
+  }
 }
 </style>
