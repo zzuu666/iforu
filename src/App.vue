@@ -9,6 +9,7 @@
         <div>
           <router-link to="/grid">Grid 栅栏</router-link>
           <router-link to="/button">Button 按钮</router-link>
+          <router-link to="/switch">Switch 开关</router-link>
         </div>
       </i-col>
       <i-col :span="20">
