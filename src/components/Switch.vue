@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="guide">
     <h1>Switch 开关</h1>
     <demo title="基本" :intro="demo1">
       <i-switch @change="switchTest"></i-switch>

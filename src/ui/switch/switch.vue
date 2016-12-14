@@ -20,7 +20,7 @@
 
 <script>
 export default {
-  name: '',
+  name: 'iSwitch',
   props: {
     checked: {
       type: Boolean,
