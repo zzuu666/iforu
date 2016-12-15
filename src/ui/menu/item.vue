@@ -2,9 +2,11 @@
   <li
     class="i-menu-item"
     :class="[
-      disabled ? 'i-menu-item-disabled' : ''
+      disabled ? 'i-menu-item-disabled' : '',
+      selected ? 'i-menu-item-selected' : ''
     ]"
-    :style="style">
+    :style="style"
+    @click="handleClick">
     <slot></slot>
   </li>
 </template>
@@ -16,7 +18,8 @@ export default {
     disabled: {
       type: Boolean,
       default: false
-    }
+    },
+    index: String
   },
   computed: {
     mode () {
@@ -34,6 +37,22 @@ export default {
         res['padding-left'] = this.level * this.indent + 'px'
       }
       return res
+    },
+    path () {
+      let path = this.$parent.path.slice()
+      path.push(this.index)
+      return path
+    },
+    selectedIndex () {
+      return this.$parent.selectedIndex
+    },
+    selected () {
+      return this.selectedIndex === this.index
+    }
+  },
+  methods: {
+    handleClick () {
+      this.$parent.clickItem(this.index, this.path)
     }
   }
 }

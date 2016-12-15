@@ -7,21 +7,19 @@
       hidden ? '' : 'i-menu-submenu-open'
     ]"
     @mouseenter="handleMouseenter"
-    @mouseleave="handleMouseleave"
-    @click="handleClick">
-    <span class="i-menu-submenu-title" :style="style" v-if="$slots.title">
+    @mouseleave="handleMouseleave">
+    <span class="i-menu-submenu-title" :style="style" @click="handleClick" v-if="$slots.title">
       <slot name="title"></slot>
     </span>
-    <transition name="slide-up">
-    <ul
-      class="i-menu i-menu-sub"
-      :class="[
-        `i-menu-${subMode}`
-      ]"
-      v-show="!hidden"
-      v-if="$slots.default">
-      <slot></slot>
-    </ul>
+    <transition :name="animitionName" v-if="$slots.default">
+      <ul
+        class="i-menu i-menu-sub"
+        :class="[
+          `i-menu-${subMode}`,
+        ]"
+        v-show="!hidden">
+        <slot></slot>
+      </ul>
    </transition>
   </li>
 </template>
@@ -33,7 +31,8 @@ export default {
     disabled: {
       type: Boolean,
       default: false
-    }
+    },
+    index: String
   },
   data () {
     return {
@@ -54,12 +53,30 @@ export default {
     indent () {
       return this.$parent.indent
     },
+    path () {
+      let path = this.$parent.path.slice()
+      path.push(this.index)
+      return path
+    },
+    animitionName () {
+      if (this.mode === 'horizontal') {
+        return 'slide-up'
+      } else {
+        return ''
+      }
+    },
     style () {
       let res = {}
       if (this.mode === 'inline') {
         res['padding-left'] = this.level * this.indent + 'px'
       }
       return res
+    },
+    selectedIndex () {
+      return this.$parent.selectedIndex
+    },
+    clickItem () {
+      return this.$parent.clickItem
     }
   },
   methods: {

@@ -23,6 +23,16 @@ export default {
     },
     indent () {
       return this.$parent.indent
+    },
+    path () {
+      let path = this.$parent.path.slice()
+      return path
+    },
+    selectedIndex () {
+      return this.$parent.selectedIndex
+    },
+    clickItem () {
+      return this.$parent.clickItem
     }
   }
 }

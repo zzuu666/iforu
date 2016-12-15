@@ -4,7 +4,8 @@
     :class="[
       `i-menu-${theme}`,
       `i-menu-${mode}`
-    ]">
+    ]"
+    @click-item="clickItem">
     <slot></slot>
   </ul>
 </template>
@@ -20,12 +21,22 @@ export default {
     mode: {
       type: String,
       default: 'vertical'
+    },
+    selectedIndex: {
+      type: String,
+      default: ''
     }
   },
   data () {
     return {
       level: 0,
-      indent: 24
+      indent: 24,
+      path: []
+    }
+  },
+  methods: {
+    clickItem (index, path) {
+      this.$emit('click-item', index, path)
     }
   }
 }
