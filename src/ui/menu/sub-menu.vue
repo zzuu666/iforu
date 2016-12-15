@@ -10,13 +10,14 @@
     <span class="i-menu-submenu-title" v-if="$slots.title">
       <slot name="title"></slot>
     </span>
+    <transition name="slide-up">
     <ul
       class="i-menu i-menu-sub i-menu-vertical"
-      :class="[]"
       v-show="!hidden"
       v-if="$slots.default">
       <slot></slot>
     </ul>
+   </transition>
   </li>
 </template>
 
