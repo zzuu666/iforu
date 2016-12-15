@@ -25,18 +25,33 @@ export default {
     selectedIndex: {
       type: String,
       default: ''
-    }
+    },
+    defaultOpen: {
+      type: Array,
+      default () {
+        return []
+      }
+    },
+    unique: Boolean
   },
   data () {
     return {
       level: 0,
       indent: 24,
-      path: []
+      path: [],
+      uniqueOpen: ''
     }
   },
   methods: {
     clickItem (index, path) {
       this.$emit('click-item', index, path)
+    },
+    open (index, path) {
+      this.unique && (path.length === 1) && (this.uniqueOpen = index)
+      this.$emit('open', index, path)
+    },
+    close (index, path) {
+      this.$emit('close', index, path)
     }
   }
 }

@@ -27,7 +27,99 @@
       </i-menu>
     </demo>
     <demo title="内嵌菜单" :intro="demo">
-      <i-menu mode="inline" class="menu-inline" @click-item="clickItem2" :selectedIndex="index2">
+      <i-menu
+        mode="inline"
+        class="menu-inline"
+        @click-item="clickItem2"
+        @open="open2"
+        @close="close2"
+        :selectedIndex="index2">
+        <sub-menu>
+          <template slot="title">
+            <icon type="mail" /> Navigation One
+          </template>
+          <item-group title="Item1">
+            <item index="1">Option 1</item>
+            <item index="2">Option 2</item>
+          </item-group>
+          <item-group title="Item2">
+            <item index="3">Option 3</item>
+            <item index="4">Option 4</item>
+          </item-group>
+        </sub-menu>
+        <sub-menu>
+          <template slot="title">
+            <icon type="appstore" /> Navigation Two
+          </template>
+          <item index="5">Option 5</item>
+          <item index="6">Option 6</item>
+          <sub-menu>
+            <template slot="title">
+              Sub menu
+            </template>
+            <item-group title="Item1">
+              <item>Option 1</item>
+              <item>Option 2</item>
+            </item-group>
+            <item-group title="Item2">
+              <item>Option 3</item>
+              <item>Option 4</item>
+            </item-group>
+          </sub-menu>
+        </sub-menu>
+        <sub-menu>
+          <template slot="title">
+            <icon type="setting" /> Navigation One
+          </template>
+          <item>Option 7</item>
+          <item>Option 8</item>
+          <item>Option 9</item>
+          <item>Option 10</item>
+        </sub-menu>
+      </i-menu>
+    </demo>
+    <demo title="只展开当前父级菜单" :intro="demo">
+      <i-menu :unique="true" mode="inline" class="menu-inline">
+        <sub-menu index="sub1">
+          <template slot="title">
+            <icon type="mail" /> Navigation One
+          </template>
+          <item-group title="Item1">
+            <item index="1">Option 1</item>
+            <item index="2">Option 2</item>
+          </item-group>
+          <item-group title="Item2">
+            <item index="3">Option 3</item>
+            <item index="4">Option 4</item>
+          </item-group>
+        </sub-menu>
+        <sub-menu index="sub2">
+          <template slot="title">
+            <icon type="appstore" /> Navigation Two
+          </template>
+          <item index="5">Option 5</item>
+          <item index="6">Option 6</item>
+          <sub-menu index="sub4">
+            <template slot="title">
+              Sub menu
+            </template>
+              <item>Option 1</item>
+              <item>Option 2</item>
+          </sub-menu>
+        </sub-menu>
+        <sub-menu index="sub3">
+          <template slot="title">
+            <icon type="setting" /> Navigation One
+          </template>
+          <item>Option 7</item>
+          <item>Option 8</item>
+          <item>Option 9</item>
+          <item>Option 10</item>
+        </sub-menu>
+      </i-menu>
+    </demo>
+    <demo title="垂直菜单" :intro="demo">
+      <i-menu class="menu-inline" @click-item="clickItem2" :selectedIndex="index2">
         <sub-menu>
           <template slot="title">
             <icon type="mail" /> Navigation One
@@ -107,6 +199,12 @@ export default {
     },
     clickItem2 (index, path) {
       this.index2 = index
+    },
+    open2 () {
+      console.log('open')
+    },
+    close2 () {
+      console.log('close')
     }
   }
 }

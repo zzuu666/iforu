@@ -75,25 +75,67 @@ export default {
     selectedIndex () {
       return this.$parent.selectedIndex
     },
+    defaultOpen () {
+      return this.$parent.defaultOpen
+    },
     clickItem () {
       return this.$parent.clickItem
+    },
+    open () {
+      return this.$parent.open
+    },
+    close () {
+      return this.$parent.close
+    },
+    uniqueOpen () {
+      return this.$parent.uniqueOpen
     }
   },
+  created () {
+    this.initStatus()
+  },
   methods: {
+    initStatus () {
+      if (this.defaultOpen.indexOf(this.index) !== -1) {
+        this.hidden = false
+      } else {
+        this.hidden = true
+      }
+    },
     handleMouseenter () {
-      if (this.mode !== 'horizontal') return
+      if (this.mode === 'inline') return
       this.timer && clearTimeout(this.timer)
       this.hidden = false
+      this.handleFadeack()
     },
     handleMouseleave () {
-      if (this.mode !== 'horizontal') return
+      if (this.mode === 'inline') return
       this.timer = setTimeout(() => {
         this.hidden = true
+        this.handleFadeack()
       }, 100)
     },
     handleClick () {
       if (this.mode === 'horizontal') return
       this.hidden = !this.hidden
+      this.handleFadeack()
+    },
+    handleFadeack () {
+      if (this.hidden) {
+        this.close(this.index, this.path)
+      } else {
+        this.open(this.index, this.path)
+      }
+    }
+  },
+  watch: {
+    uniqueOpen (value) {
+      if (this.level > 1) return
+      if (this.index === value) {
+        this.hidden = false
+      } else {
+        this.hidden = true
+      }
     }
   }
 }
