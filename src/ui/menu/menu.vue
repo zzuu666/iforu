@@ -1,6 +1,6 @@
 <template>
   <ul
-    class="i-menu"
+    class="i-menu i-menu-root"
     :class="[
       `i-menu-${theme}`,
       `i-menu-${mode}`
@@ -20,6 +20,12 @@ export default {
     mode: {
       type: String,
       default: 'vertical'
+    }
+  },
+  data () {
+    return {
+      level: 0,
+      indent: 24
     }
   }
 }

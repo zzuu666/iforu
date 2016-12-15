@@ -13,6 +13,17 @@ export default {
   name: 'iMenuItemGroup',
   props: {
     title: String
+  },
+  computed: {
+    mode () {
+      return this.$parent.mode
+    },
+    level () {
+      return this.$parent.level
+    },
+    indent () {
+      return this.$parent.indent
+    }
   }
 }
 </script>

@@ -3,16 +3,21 @@
     class="i-menu-submenu"
     :class="[
       `i-menu-submenu-${mode}`,
-      disabled ? 'i-menu-submenu-disabled' : ''
+      disabled ? 'i-menu-submenu-disabled' : '',
+      hidden ? '' : 'i-menu-submenu-open'
     ]"
-    @mouseover="handleMouseover"
-    @mouseout="handleMouseout">
-    <span class="i-menu-submenu-title" v-if="$slots.title">
+    @mouseenter="handleMouseenter"
+    @mouseleave="handleMouseleave"
+    @click="handleClick">
+    <span class="i-menu-submenu-title" :style="style" v-if="$slots.title">
       <slot name="title"></slot>
     </span>
     <transition name="slide-up">
     <ul
-      class="i-menu i-menu-sub i-menu-vertical"
+      class="i-menu i-menu-sub"
+      :class="[
+        `i-menu-${subMode}`
+      ]"
       v-show="!hidden"
       v-if="$slots.default">
       <slot></slot>
@@ -32,20 +37,46 @@ export default {
   },
   data () {
     return {
-      hidden: true
+      hidden: true,
+      timer: null
     }
   },
   computed: {
     mode () {
       return this.$parent.mode
+    },
+    subMode () {
+      return this.$parent.mode === 'horizontal' ? 'vertical' : this.$parent.mode
+    },
+    level () {
+      return this.$parent.level + 1
+    },
+    indent () {
+      return this.$parent.indent
+    },
+    style () {
+      let res = {}
+      if (this.mode === 'inline') {
+        res['padding-left'] = this.level * this.indent + 'px'
+      }
+      return res
     }
   },
   methods: {
-    handleMouseover () {
+    handleMouseenter () {
+      if (this.mode !== 'horizontal') return
+      this.timer && clearTimeout(this.timer)
       this.hidden = false
     },
-    handleMouseout () {
-      this.hidden = true
+    handleMouseleave () {
+      if (this.mode !== 'horizontal') return
+      this.timer = setTimeout(() => {
+        this.hidden = true
+      }, 100)
+    },
+    handleClick () {
+      if (this.mode === 'horizontal') return
+      this.hidden = !this.hidden
     }
   }
 }
