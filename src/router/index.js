@@ -4,7 +4,8 @@ import Router from 'vue-router'
 import Grid from '../components/Grid'
 import Button from '../components/Button'
 import Switch from '../components/switch'
-import Menu from '../components/menu'
+import Menu from '../components/Menu'
+import Input from '../components/Input'
 
 Vue.use(Router)
 
@@ -24,6 +25,10 @@ const routes = [
   {
     path: '/menu',
     component: Menu
+  },
+  {
+    path: '/input',
+    component: Input
   }
 ]
 
