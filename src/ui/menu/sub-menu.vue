@@ -136,6 +136,13 @@ export default {
       } else {
         this.hidden = true
       }
+    },
+    defaultOpen () {
+      if (this.defaultOpen.indexOf(this.index) !== -1) {
+        this.hidden = false
+      } else {
+        this.hidden = true
+      }
     }
   }
 }

@@ -52,6 +52,7 @@ export default {
   },
   methods: {
     handleClick () {
+      if (this.disabled) return
       this.$parent.clickItem(this.index, this.path)
     }
   }

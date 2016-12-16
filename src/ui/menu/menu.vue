@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     clickItem (index, path) {
-      this.$emit('click-item', index, path)
+      this.$emit('click', index, path)
     },
     open (index, path) {
       this.unique && (path.length === 1) && (this.uniqueOpen = index)
