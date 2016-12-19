@@ -8,6 +8,9 @@
         <p>input {{value}}</p>
       </div>
     </demo>
+    <demo class="input-example" title="禁用状态" intro="基本使用。">
+      <i-input placeholder="basic" v-model="value" :disabled="true" />
+    </demo>
     <demo class="input-example" title="三种大小" intro="基本使用。">
       <div class="demo-row"><i-input size="lg" placeholder="This is large size" /></div>
       <div class="demo-row"><i-input placeholder="This is normal size" /></div>

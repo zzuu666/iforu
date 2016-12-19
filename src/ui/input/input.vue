@@ -7,8 +7,13 @@
     ]"
     :value="value"
     :placeholder="placeholder"
+    :disabled="disabled"
+    :readonly="readonly"
+    :autofocus="autofocus"
     :type="type"
-    @input="handleInput">
+    @input="handleInput"
+    @blur="handleBlur"
+    @focus="handleFocus">
 
   <span class="i-input-wrapper i-input-group" v-else>
     <span class="i-input-group-addon" v-if="$slots.prepend">
@@ -21,6 +26,9 @@
       ]"
       :value="value"
       :placeholder="placeholder"
+      :disabled="disabled"
+      :readonly="readonly"
+      :autofocus="autofocus"
       :type="type"
       @input="handleInput"
       @blur="handleBlur"
@@ -41,7 +49,10 @@ export default {
       default: 'text'
     },
     size: String,
-    placeholder: String
+    placeholder: String,
+    readonly: Boolean,
+    autofocus: Boolean,
+    disabled: Boolean
   },
   methods: {
     handleInput (e) {
