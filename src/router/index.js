@@ -9,6 +9,7 @@ import Menu from '../components/Menu'
 import Input from '../components/Input'
 import Select from '../components/Select'
 import Tag from '../components/Tag'
+import Radio from '../components/Radio'
 
 Vue.use(Router)
 
@@ -44,6 +45,10 @@ const routes = [
   {
     path: '/tag',
     component: Tag
+  },
+  {
+    path: '/radio',
+    component: Radio
   }
 ]
 

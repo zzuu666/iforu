@@ -22,7 +22,8 @@
             <item-group title="Data Entry">
               <item index="4"><router-link to="/switch">Switch 开关</router-link></item>
               <item index="5"><router-link to="/input">Input 输入框</router-link></item>
-              <item index="6"><router-link to="/select">Select 选择器</router-link></item>
+              <item index="6"><router-link to="/radio">Radio 单选框</router-link></item>
+              <item index="8"><router-link to="/select">Select 选择器</router-link></item>
             </item-group>
             <item-group title="Data Display">
               <item index="7"><router-link to="/tag">Tag 标签</router-link></item>
