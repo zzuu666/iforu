@@ -8,7 +8,7 @@
       class="i-radio"
       :class="[
         model ===  label ? 'i-radio-checked' : '',
-        disabled ? 'i-radio-button-disabled' : ''
+        disabled ? 'i-radio-disabled' : ''
       ]">
       <span class="i-radio-inner"></span>
       <input

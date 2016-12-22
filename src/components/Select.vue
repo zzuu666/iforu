@@ -1,6 +1,44 @@
 <template>
   <div class="guide">
-    <i-select></i-select>
+    <demo title="三种大小">
+      <i-select class="demo-select" size="lg" v-model="value" placeholder="请选择">
+        <i-option
+          v-for="item in options"
+          :label="item.label"
+          :value="item.value"
+          :disabled="item.disabled"></i-option>
+      </i-select>
+      <i-select class="demo-select" v-model="value" placeholder="请选择">
+        <i-option
+          v-for="item in options"
+          :label="item.label"
+          :value="item.value"
+          :disabled="item.disabled"></i-option>
+      </i-select>
+      <i-select class="demo-select" size="sm" v-model="value" placeholder="请选择">
+        <i-option
+          v-for="item in options"
+          :label="item.label"
+          :value="item.value"
+          :disabled="item.disabled"></i-option>
+      </i-select>
+    </demo>
+    <demo title="基本用法">
+      <i-select class="demo-select" v-model="value" placeholder="请选择">
+        <i-option
+          v-for="item in options"
+          :label="item.label"
+          :value="item.value"
+          :disabled="item.disabled"></i-option>
+      </i-select>
+      <i-select class="demo-select" disabled v-model="value" placeholder="请选择">
+        <i-option
+          v-for="item in options"
+          :label="item.label"
+          :value="item.value"
+          :disabled="item.disabled"></i-option>
+      </i-select>
+    </demo>
   </div>
 </template>
 
@@ -8,15 +46,40 @@
 import Demo from './demo/grid'
 import iSelect from '../ui/select'
 
+const iOption = iSelect.Option
 export default {
   name: 'GuideSelect',
   components: {
     Demo,
-    iSelect
+    iSelect,
+    iOption
+  },
+  data () {
+    return {
+      value: '',
+      options: [
+        {
+          label: '清炸排骨',
+          value: 'A'
+        },
+        {
+          label: '爆炒肉片',
+          value: 'B'
+        },
+        {
+          label: '跳水兔',
+          value: 'C',
+          disabled: true
+        }
+      ]
+    }
   }
 }
 </script>
 
 <style lang="less" scoped>
 @import "index";
+.demo-select {
+  width: 200px;
+}
 </style>
