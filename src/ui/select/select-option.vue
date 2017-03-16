@@ -3,7 +3,7 @@
     class="i-select-dropdown-menu-item"
     :class="[
       disabled ? 'i-select-dropdown-menu-item-disabled' : '',
-      selected === value ? 'i-select-dropdown-menu-item-selected' : ''
+      selected ? 'i-select-dropdown-menu-item-selected' : ''
     ]"
     v-text="label || value"
     @click="handleClick">
@@ -20,19 +20,33 @@ export default {
   },
   computed: {
     selected () {
-      return this.$parent.value
+      if (this.multiple) {
+        return this.$parent.value.indexOf(this.value) > -1
+      } else {
+        return this.$parent.value === this.value
+      }
+    },
+    multiple () {
+      return this.$parent.multiple
     }
   },
   methods: {
     handleClick () {
       if (this.disabled) return
-      this.changeSelected()
+      if (this.multiple) {
+        if (this.selected) {
+          let label = this.label || this.value
+          this.$parent.removeChoice(label)
+        } else {
+          this.$parent.changeSelectedMultiple(this.label, this.value)
+        }
+      } else {
+        this.changeSelected()
+      }
       this.$parent.handleClick()
-      this.$parent.$emit('input', this.value)
     },
     changeSelected () {
-      let label = this.label || this.value
-      this.$parent.changeSelected(label)
+      this.$parent.changeSelected(this.label, this.value)
     }
   }
 }

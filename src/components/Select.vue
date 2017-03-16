@@ -39,6 +39,24 @@
           :disabled="item.disabled"></i-option>
       </i-select>
     </demo>
+    <demo title="搜索框">
+      <i-select class="demo-select" show-search @search="filterOptions" v-model="value" placeholder="请选择">
+        <i-option
+          v-for="item in options"
+          :label="item.label"
+          :value="item.value"
+          :disabled="item.disabled"></i-option>
+      </i-select>
+    </demo>
+    <demo title="多选">
+      <i-select class="demo-select" multiple v-model="valueArr" placeholder="请选择">
+        <i-option
+          v-for="item in options"
+          :label="item.label"
+          :value="item.value"
+          :disabled="item.disabled"></i-option>
+      </i-select>
+    </demo>
   </div>
 </template>
 
@@ -57,6 +75,7 @@ export default {
   data () {
     return {
       value: '',
+      valueArr: [],
       options: [
         {
           label: '清炸排骨',
@@ -72,6 +91,14 @@ export default {
           disabled: true
         }
       ]
+    }
+  },
+  methods: {
+    filterOptions (filter) {
+      this.options2 = this.options.filter(this.filterFunction(filter))
+    },
+    filterFunction (filter) {
+      return (element) => element.label.indexOf(filter) > -1
     }
   }
 }
