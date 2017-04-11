@@ -114,7 +114,7 @@
         </i-button-group>
       </div>
     </demo>
-
+  </div>
 </template>
 
 <script>

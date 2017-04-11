@@ -15,14 +15,14 @@
       ]"
       @click="handleClick">
       <div class="i-select-selection__rendered">
-        <div class="i-select-selection__placeholder" v-text="placeholder" v-show="!filter && !selected.length">
+        <div class="i-select-selection__placeholder" v-text="placeholder" v-show="!isHidePlaceholder">
         </div>
         <div
           class="i-select-selection-selected-value"
           :class="[
             showSearch && open ? 'i-select-selection-selected-opacity' : ''
           ]"
-          v-text="selected"
+          v-text="selected && selected.label"
           v-show="!filter"
           v-if="!multiple">
         </div>
@@ -86,6 +86,11 @@ export default {
     this.initStyle()
     this.initData()
   },
+  computed: {
+    isHidePlaceholder () {
+      return this.filter || (this.multiple ? this.selected.length : this.selected.label)
+    }
+  },
   methods: {
     initStyle () {
       let select = this.$refs.select.getBoundingClientRect()
@@ -100,7 +105,10 @@ export default {
       if (this.multiple) {
         this.selected = []
       } else {
-        this.selected = {}
+        this.selected = {
+          value: '',
+          label: ''
+        }
       }
     },
     handleClick () {
