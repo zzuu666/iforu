@@ -67,7 +67,7 @@ export default {
   },
   methods: {
     selectItem (index) {
-      this.currentSelected = index
+      // this.currentSelected = index
     }
   }
 }
